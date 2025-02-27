@@ -1,0 +1,1017 @@
+:root {
+    --color-ok: #48c78e;
+    --color-ko: #ffe08a;
+    --color-error: #f14668;
+    --color-primary: #485fc7;
+    --color-background: #f9fafb;
+}
+
+body {
+    background-color: var(--color-background);
+}
+
+.hero-section {
+    background: linear-gradient(135deg, #485fc7 0%, #3e8ed0 100%);
+    margin-bottom: 2rem;
+    padding: 3rem 1.5rem;
+}
+
+.app-title {
+    font-weight: 800;
+    letter-spacing: -1px;
+}
+
+.hero-section .subtitle {
+    max-width: 600px;
+    margin: 1rem auto;
+    opacity: 0.9;
+}
+
+.action-section {
+    margin: -3.5rem auto 2rem;
+    max-width: 800px;
+    position: relative;
+    z-index: 5;
+}
+
+.action-card {
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.12);
+}
+
+/* Nuevo estilo para el botón de análisis */
+#checkCategoriesBtn {
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(72, 95, 199, 0.2);
+}
+
+#checkCategoriesBtn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(72, 95, 199, 0.3);
+}
+
+.status-ok { 
+    background-color: var(--color-ok); 
+    color: white; 
+}
+
+.status-ko { 
+    background-color: var(--color-ko); 
+}
+
+.status-error { 
+    background-color: var(--color-error); 
+    color: white; 
+}
+
+.stats-card { 
+    transition: transform .3s, box-shadow .3s;
+    cursor: pointer;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.stats-card .title {
+    margin-bottom: 1rem !important;
+}
+
+.stats-card:hover { 
+    transform: translateY(-5px); 
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.stats-card.active {
+    box-shadow: 0 0 0 2px var(--color-primary), 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.loading-spinner { 
+    animation: spinAround .7s infinite linear; 
+}
+
+@keyframes spinAround {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+#statsSection {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background-color: white;
+    padding: 1rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    border-radius: 8px;
+}
+
+.error-notification {
+    color: white;
+    background-color: var(--color-error);
+    padding: 1rem;
+    border-radius: 5px;
+    margin-top: 1rem;
+}
+
+.card {
+    height: 100%;
+    transition: transform .2s, box-shadow .2s;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.content p {
+    margin-bottom: 0.5rem;
+}
+
+.no-results {
+    text-align: center;
+    padding: 3rem 1.5rem;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.no-results img {
+    max-width: 200px;
+    margin-bottom: 1.5rem;
+    opacity: 0.7;
+}
+
+.filter-message {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+/* Estilos para tarjetas de productos */
+.product-card {
+    height: 100%;
+    transition: all 0.3s;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.product-image {
+    height: 180px;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #f8f9fa;
+    position: relative;
+}
+
+.product-price {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background: var(--color-primary);
+    color: white;
+    padding: 5px 10px;
+    border-top-left-radius: 6px;
+    font-weight: bold;
+}
+
+.view-products {
+    color: var(--color-primary);
+    font-weight: 500;
+    transition: background-color 0.2s;
+}
+
+.view-products:hover {
+    background-color: rgba(72, 95, 199, 0.1);
+}
+
+/* Estilos para el modal */
+.modal-card {
+    max-width: 900px;
+    width: 90%;
+}
+
+.product-list-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.no-products-message {
+    text-align: center;
+    padding: 2rem;
+}
+
+/* Estilos sofisticados para el esqueleto de carga */
+.product-skeleton {
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.product-skeleton::before {
+    content: "";
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-image: linear-gradient(
+        90deg,
+        rgba(255, 255, 255, 0) 0,
+        rgba(255, 255, 255, 0.6) 50%,
+        rgba(255, 255, 255, 0) 100%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+    z-index: 1;
+}
+
+.skeleton-text {
+    height: 12px;
+    margin-bottom: 8px;
+    border-radius: 2px;
+    background-color: #f0f0f0;
+    position: relative;
+    overflow: hidden;
+}
+
+.skeleton-title {
+    height: 18px;
+    width: 80%;
+    margin-bottom: 12px;
+}
+
+.product-image.product-skeleton {
+    background-color: #f5f5f5;
+    position: relative;
+}
+
+.loading-dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin: 0 2px;
+    background-color: var(--color-primary);
+    animation: pulse 1s infinite;
+}
+
+.loading-dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.loading-dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+.progress-container {
+    padding: 10px 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    transition: opacity 0.5s ease;
+}
+
+.progress.is-primary {
+    height: 8px;
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+/* Animaciones elegantes */
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(0.8);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(1.2);
+        opacity: 1;
+    }
+}
+
+/* Mejoras en la transición de carga a producto real */
+.product-card.loaded {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Personalización para la barra de carga */
+.progress::-webkit-progress-bar {
+    background-color: #e8e8e8;
+}
+
+.progress::-webkit-progress-value {
+    background: linear-gradient(90deg, var(--color-primary) 0%, #6f86d6 100%);
+    transition: width 0.3s ease;
+}
+
+.progress::-moz-progress-bar {
+    background: linear-gradient(90deg, var(--color-primary) 0%, #6f86d6 100%);
+    transition: width 0.3s ease;
+}
+
+/* Mejoras para el contenedor de productos */
+#product-items-container {
+    position: relative;
+    min-height: 300px;
+}
+
+/* Estilo para el mensaje de más productos */
+.load-more-container {
+    margin-top: 15px;
+    padding: 15px;
+    background: linear-gradient(145deg, #f8f9fa, #e9ecef);
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+    text-align: center;
+}
+
+.load-more-btn {
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.load-more-btn::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s ease;
+    z-index: -1;
+}
+
+.load-more-btn:hover::after {
+    transform: scaleX(1);
+    transform-origin: left;
+}
+
+/* Estilo para el botón de actualización de producto */
+.refresh-product-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.product-card:hover .refresh-product-btn {
+    opacity: 1;
+}
+
+.refresh-product-btn:hover {
+    background-color: var(--color-primary);
+    color: white;
+    transform: rotate(15deg);
+}
+
+.refresh-product-btn.loading {
+    pointer-events: none;
+    animation: spinAround 0.7s infinite linear;
+}
+
+/* Estilos para productos con bajo stock */
+.low-stock-card {
+    border: 2px solid #FFB74D !important;
+}
+
+.low-stock-card:hover {
+    box-shadow: 0 5px 15px rgba(255, 152, 0, 0.3) !important;
+}
+
+.low-stock-badge {
+    position: absolute;
+    top: 8px;
+    left: 8px;
+    background-color: #FF9800;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    animation: pulseLowStock 2s infinite;
+    z-index: 5;
+}
+
+@keyframes pulseLowStock {
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: scale(1.05);
+        opacity: 0.9;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Mejoras en la visualización del stock */
+.stock-indicator {
+    display: flex;
+    align-items: center;
+    padding: 5px 8px;
+    border-radius: 4px;
+    margin-top: 8px;
+    background-color: rgba(0, 0, 0, 0.03);
+    transition: all 0.3s ease;
+}
+
+.stock-indicator.has-text-warning {
+    background-color: rgba(255, 152, 0, 0.1);
+}
+
+.stock-indicator.has-text-success {
+    background-color: rgba(72, 199, 142, 0.1);
+}
+
+.stock-indicator.has-text-danger {
+    background-color: rgba(241, 70, 104, 0.1);
+}
+
+.stock-indicator.has-text-grey {
+    background-color: rgba(120, 120, 120, 0.1);
+}
+
+.stock-indicator .icon {
+    margin-right: 6px;
+}
+
+/* Animación para destacar producto actualizado */
+.highlight-update.low-stock-card {
+    animation: highlightLowStock 1.5s ease;
+}
+
+@keyframes highlightLowStock {
+    0% {
+        box-shadow: 0 0 0 4px rgba(255, 152, 0, 0.8);
+    }
+    70% {
+        box-shadow: 0 0 0 8px rgba(255, 152, 0, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 152, 0, 0);
+    }
+}
+
+/* Estilos para el modal expandible */
+.modal-card {
+    transition: all 0.3s ease;
+    width: 90%;
+    max-width: 900px;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.modal-card-body {
+    flex: 1;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+}
+
+/* Botón de cambio de tamaño */
+#toggle-modal-size {
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+#toggle-modal-size:hover {
+    background-color: #f8f9fa;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+}
+
+/* Animación para el cambio de tamaño de las tarjetas */
+.product-item {
+    transition: width 0.3s ease, flex 0.3s ease, max-width 0.3s ease;
+}
+
+/* Estilos de ayuda para teclas rápidas */
+.keyboard-shortcut-hint {
+    position: fixed;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    z-index: 1000;
+    pointer-events: none;
+    animation: fadeInOut 4s forwards;
+}
+
+@keyframes fadeInOut {
+    0% { opacity: 0; transform: translate(-50%, 20px); }
+    15% { opacity: 1; transform: translate(-50%, 0); }
+    85% { opacity: 1; transform: translate(-50%, 0); }
+    100% { opacity: 0; transform: translate(-50%, 20px); }
+}
+/* Estilos para el panel de filtros */
+.product-filters-panel {
+    margin-bottom: 1.5rem;
+}
+
+.product-filters-container {
+    border-radius: 8px;
+    background-color: #f9fafb;
+    border: 1px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+.product-filters-container:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Animaciones para mostrar/ocultar filtros */
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+}
+
+/* Contenedor de rango de precios */
+.price-range-container {
+    display: flex;
+    align-items: center;
+}
+
+.price-range-container input {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Chips de filtros activos */
+.active-filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.filter-chip {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.6rem;
+    border-radius: 16px;
+    font-size: 0.85rem;
+    transition: all 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.filter-chip:hover {
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+    transform: translateY(-1px);
+}
+
+.filter-chip .delete {
+    margin-left: 8px;
+    transition: all 0.2s ease;
+}
+
+.filter-chip .delete:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+}
+
+/* Mensaje de no resultados */
+.no-filter-results {
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Mejorar apariencia de los select */
+.select:not(.is-multiple):not(.is-loading)::after {
+    border-color: var(--color-primary);
+}
+
+.select:hover::after {
+    border-color: var(--color-primary);
+}
+
+/* Foco en inputs y selects */
+.input:focus, .select select:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 0.125em rgba(72, 95, 199, 0.25);
+}
+
+/* Botones de acción de filtros */
+.field.is-grouped.is-grouped-right {
+    justify-content: flex-end;
+}
+
+/* Responsive para móviles */
+@media screen and (max-width: 768px) {
+    .price-range-container {
+        flex-direction: row;
+    }
+    
+    .field.is-grouped.is-grouped-right {
+        justify-content: center;
+    }
+    
+    .filter-chip {
+        font-size: 0.75rem;
+    }
+}
+
+/* Estilos para el loader de scroll infinito */
+.scroll-loader-container {
+    padding: 1.5rem;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.loader-dot {
+    width: 8px;
+    height: 8px;
+    margin: 0 4px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    animation: loader-dot-pulse 1.4s infinite ease-in-out both;
+}
+
+.loader-dot:nth-child(1) {
+    animation-delay: -0.32s;
+}
+
+.loader-dot:nth-child(2) {
+    animation-delay: -0.16s;
+}
+
+@keyframes loader-dot-pulse {
+    0%, 80%, 100% {
+        transform: scale(0);
+        opacity: 0.6;
+    }
+    40% {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Asegurar que el cuerpo del modal tenga scroll */
+.modal-card-body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 30px;
+}
+
+/* Animación para nuevos productos cargados */
+.product-card.loaded {
+    animation: fadeInUp 0.5s ease-out forwards;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Mensaje de todos los productos cargados */
+#scroll-loader .notification {
+    animation: fadeIn 0.5s ease-out;
+    transition: all 0.3s ease;
+}
+
+#scroll-loader .notification:hover {
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Mejora visual para el progreso */
+.progress-container {
+    padding: 10px 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-bottom: 20px;
+    transition: opacity 0.5s ease;
+}
+
+.progress-container.hiding {
+    opacity: 0;
+}
+
+/* Estilos para drag & drop de productos */
+
+/* Clases para el elemento durante el arrastre */
+.product-ghost {
+    opacity: 0.5;
+    background: #c8ebfb;
+    border-radius: 8px;
+}
+
+.product-chosen {
+    box-shadow: 0 0 0 3px var(--color-primary), 0 10px 20px rgba(0, 0, 0, 0.2) !important;
+    transform: scale(1.02);
+    z-index: 100;
+}
+
+.product-drag {
+    opacity: 0.8;
+    transform: rotate(2deg);
+}
+
+/* Indicador visual para el cursor durante el arrastre */
+.dragging-active {
+    cursor: grabbing !important;
+}
+
+.dragging-active .product-card:not(.product-chosen) {
+    cursor: grabbing;
+}
+
+.product-card {
+    cursor: grab;
+}
+
+/* Animación cuando se completa el reordenamiento */
+@keyframes reorderPulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(72, 95, 199, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(72, 95, 199, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(72, 95, 199, 0);
+    }
+}
+
+.reorder-complete {
+    animation: reorderPulse 0.8s ease-out;
+}
+
+/* Instrucciones de drag & drop */
+.drag-drop-instructions {
+    margin-bottom: 1rem;
+}
+
+.drag-drop-hint {
+    transform: translateY(-10px);
+    opacity: 0;
+    transition: all 0.3s ease;
+    border-left: 4px solid var(--color-primary);
+}
+
+.drag-drop-hint.show {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+.drag-drop-hint .icon-text {
+    color: var(--color-primary);
+}
+
+/* Feedback durante el arrastre */
+.drag-feedback {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 9999;
+    opacity: 0;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.drag-feedback.visible {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.drag-feedback .feedback-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Indicador de posición al arrastrar */
+.sortable-fallback {
+    opacity: 0.4;
+}
+
+/* Añadir un borde punteado en el hover para indicar que es arrastrable */
+.product-card:hover::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background-color: var(--color-primary);
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+}
+
+.product-card:hover::before {
+    opacity: 1;
+}
+
+/* Añadir un pequeño icono de arrastre en la esquina */
+.product-card {
+    position: relative;
+}
+
+.product-card::after {
+    content: '↕';
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: var(--color-primary);
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    z-index: 5;
+}
+
+.product-card:hover::after {
+    opacity: 0.8;
+}
+
+/* Mejorar la apariencia en dispositivos móviles */
+@media (max-width: 768px) {
+    .product-card::after {
+        opacity: 0.8;
+        top: 5px;
+        right: 5px;
+    }
+    
+    .drag-drop-hint {
+        font-size: 0.9rem;
+    }
+}
+/* Estilos para el loader de scroll infinito */
+.scroll-loader-container {
+    padding: 1.5rem;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 30px;
+    height: 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .loader-dots {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .loader-dot {
+    width: 8px;
+    height: 8px;
+    margin: 0 4px;
+    border-radius: 50%;
+    background-color: var(--color-primary);
+    animation: loader-dot-pulse 1.4s infinite ease-in-out both;
+  }
+  
+  .loader-dot:nth-child(1) {
+    animation-delay: -0.32s;
+  }
+  
+  .loader-dot:nth-child(2) {
+    animation-delay: -0.16s;
+  }
+  
+  @keyframes loader-dot-pulse {
+    0%, 80%, 100% {
+      transform: scale(0);
+      opacity: 0.6;
+    }
+    40% {
+      transform: scale(1);
+      opacity: 1;
+    }
+  }
+  
+  /* Asegurar que el cuerpo del modal tenga scroll */
+  .modal-card-body {
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 30px;
+  }
+  
+  /* Animación para nuevos productos cargados */
+  .product-card.loaded {
+    animation: fadeInUp 0.5s ease-out forwards;
+  }
+  
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
