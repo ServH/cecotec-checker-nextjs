@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { Category } from '@/app/types/category';
-import { ProductModal } from './ProductModal';
+import { ProductModal } from '../lib/ProductModal';
 
 interface CategoryCardProps {
   category: Category;
